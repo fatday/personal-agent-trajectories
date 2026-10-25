@@ -1,0 +1,9 @@
+*
+!/.gitignore
+!/.nojekyll
+!/index.html
+!/app.js
+!/styles.css
+!/data/
+/data/*
+!/data/vault.json

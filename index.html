@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="A read-only collection of recorded personal agent runs in a virtual environment.">
+  <title>Personal Agent Trajectories</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <button class="skip-link" type="button">Skip to the trace</button>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Trajectory library">
+      <div class="library-brand" aria-label="Personal Agent Trajectories">
+        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path d="M8 6v20m0-16h16M8 22h16" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="6" r="3" fill="currentColor"/><circle cx="24" cy="10" r="3" fill="currentColor"/><circle cx="24" cy="22" r="3" fill="currentColor"/><circle cx="8" cy="26" r="3" fill="currentColor"/></svg>
+        <span>Personal Agent<br><strong>Trajectories</strong></span>
+      </div>
+      <div class="sidebar-section-label">THE COLLECTION <span id="case-count"></span></div>
+      <nav id="case-nav" aria-label="Choose a case"><p class="muted sidebar-loading">Private collection</p></nav>
+      <div class="sidebar-footer">
+        <span class="read-only-badge"><span></span> Read-only archive</span>
+        <a id="download-all" class="download-all" aria-disabled="true" download>Download all JSON <span aria-hidden="true">↗</span></a>
+        <p>Full messages. Original order.<br>Expand details to inspect.</p>
+      </div>
+    </aside>
+
+    <main id="main-content">
+      <header class="page-header">
+        <p class="eyebrow">A RECORD OF ACTIONS &amp; CONVERSATION</p>
+        <h1>Personal Agent Trajectories</h1>
+        <p class="page-description">Recorded agent runs in a virtual environment. Shared by private link. Identifiers are anonymized.</p>
+      </header>
+
+      <section id="case-overview" class="case-overview" aria-labelledby="case-title" hidden>
+        <div class="case-heading-row">
+          <div><p id="active-case-id" class="case-id"></p><h2 id="case-title"></h2></div>
+          <div class="case-actions">
+            <button id="copy-case" class="button button-secondary" type="button"><span aria-hidden="true">↗</span> Copy case link</button>
+            <a id="download-case" class="button button-dark" download>Download JSON <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="case-facts" id="case-facts" aria-label="Case statistics"></div>
+        <details id="metadata-details" class="metadata-details"><summary>Run metadata</summary><pre id="metadata-content"></pre></details>
+      </section>
+
+      <section id="reader-tools" class="reader-tools" aria-label="Trace controls" hidden>
+        <div class="search-row">
+          <label class="search-field" for="trace-search"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 4 4" stroke="currentColor" stroke-width="1.5"/></svg><input id="trace-search" type="search" placeholder="Search messages, reasoning, or tools…" autocomplete="off" spellcheck="false"><span class="search-shortcut" aria-hidden="true">/</span></label>
+          <div class="detail-controls"><button id="expand-all" type="button" class="button button-quiet">Expand all details</button><button id="collapse-all" type="button" class="button button-quiet">Collapse details</button></div>
+        </div>
+        <div class="reader-note"><span aria-hidden="true">↳</span> Reasoning and tool details are collapsed; expand to inspect the full trace.</div>
+        <div id="filter-banner" class="filter-banner" hidden><p id="filter-status" aria-live="polite"></p><button id="clear-search" type="button">Clear search &amp; show full trace <span aria-hidden="true">×</span></button></div>
+      </section>
+
+      <section id="trace" aria-label="Messages in original order" tabindex="-1">
+        <div id="load-state" class="load-state"><span class="loading-dot" aria-hidden="true"></span><h2>This collection is private</h2><p>Open the complete private link to view this collection.</p></div>
+        <div id="message-list"></div>
+        <div id="empty-search" class="empty-search" hidden><h3>No matching messages</h3><p>Try a different word or clear the search to return to the complete trace.</p><button id="empty-clear" type="button" class="button button-secondary">Show full trace</button></div>
+      </section>
+      <footer id="trace-footer" class="trace-footer" hidden><span class="end-marker" aria-hidden="true"></span><p id="trace-footer-text"></p><button type="button" id="back-to-top">Back to top ↑</button></footer>
+    </main>
+  </div>
+  <div id="announcement" class="announcement" role="status" aria-live="polite"></div>
+  <dialog id="copy-dialog" aria-labelledby="copy-dialog-title">
+    <form method="dialog"><div class="dialog-heading"><h2 id="copy-dialog-title">Copy this link</h2><button class="dialog-close" aria-label="Close" value="close">×</button></div><p>Clipboard access is unavailable. Select and copy the link below.</p><input id="fallback-link" type="text" readonly aria-label="Link to copy"><button class="button button-dark" value="close">Done</button></form>
+  </dialog>
+</body>
+</html>
